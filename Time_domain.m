@@ -1,8 +1,8 @@
-%% Veriyi okutma, trialları define etme ve epoklanmış halini diske yazdırma
+%% A sample scfript for time domain analsis of a brainvision segmented data file. For a neurolinguistic study
 ft_defaults
 load('capa_layout');
 load ('capa_neighbour');
-subject_names = {'ahmet' 'aslı' 'asude'  'ayla' 'basak' 'berkant' 'bernis' 'beyhan' 'busra' 'cigdem' ...
+subject_names = {'ahmet' 'aslÃ½' 'asude'  'ayla' 'basak' 'berkant' 'bernis' 'beyhan' 'busra' 'cigdem' ...
     'deniz' 'elif' 'emine' 'enes'  'eray' 'erdem' 'fatih' 'filiz' 'furkan' 'ipek' 'irem' ...
     'mustafa' 'omer' 'ozkan'  'rukiye' 'samet' 'seckin' 'seda' 'selin' 'serdar' 'sevcan' ...
     'sumeyra' 'zeynep' };
@@ -99,11 +99,11 @@ cfg = [];
 cfg.layout = capa_layout; 
 cfg.xlim = [-0.2 1.3]; 
 ft_multiplotER(cfg,baseline_tlock_bc{n},person_tlock_bc{n},number_tlock_bc{n})
-%başka bir preprocessing işlemi yapılmayacak ise; istatistiğe burada oluşturulan
-%datalar gireceği için dikkatli incelenmeliler!!!
-%analiz basamaklarını tekrarlamamak adına, bu kısımda emin olduktan sonra
+%baÃ¾ka bir preprocessing iÃ¾lemi yapÃ½lmayacak ise; istatistiÃ°e burada oluÃ¾turulan
+%datalar gireceÃ°i iÃ§in dikkatli incelenmeliler!!!
+%analiz basamaklarÃ½nÃ½ tekrarlamamak adÃ½na, bu kÃ½sÃ½mda emin olduktan sonra
 %varolan datalar ve elde edilecek grandaveragelar save edilebilir.
-%(.mat formatında)
+%(.mat formatÃ½nda)
 %% Grandaveraging
 cfg = [];
     baseline_grandavg = ft_timelockgrandaverage(cfg,baseline_tlock_bc{:});
