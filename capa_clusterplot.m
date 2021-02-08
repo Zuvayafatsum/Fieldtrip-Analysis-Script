@@ -1,4 +1,4 @@
-%% çalýþtýrmadan önce cluster_time_interval fonksiyonunu lazým (duration_interval variable) ve Fs!!!
+%% An alternative for ft_clusterplot for plotting with desired time intervals
 
 load('capa_layout');
 load('capa_neighbour');
