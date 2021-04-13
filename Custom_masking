@@ -1,0 +1,22 @@
+%% To create a new mask which will include the mask created by fieldtrip statistics functions.(ft_freqstatistics)
+%% pass "data" as one of the grandaverage data structures used for the statistical analysis and pass "stat" as the output variable from the stat function.
+%% Use the output for data visualization as a spectral-spatio-temporal mask of significant cluster/s
+function [new_mask] = mask_creating(data,stat)
+
+
+mask_dimensions = size(data.powspctrm);
+new_mask = zeros(mask_dimensions(1),mask_dimensions(2),mask_dimensions(3));
+freq_1 = find(data.freq == stat.freq(1));
+freq_son = find(data.freq == stat.freq(end));
+time_1 = find(data.time == stat.time(1));
+time_son = find(data.time == stat.time(end));
+new_mask(:,freq_1 : freq_son,time_1 : time_son) = stat.mask;
+new_mask = logical(new_mask);
+if sum(new_mask(:)) == 0
+    sprintf('No significant cluster was detected to create a mask')
+else 
+    new_mask = new_mask;
+end
+end
+
+
