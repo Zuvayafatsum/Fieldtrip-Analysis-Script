@@ -1,3 +1,4 @@
+%% Plotting Topography of Significant clusters with predefined time intervals (an alternative to ft_clusterplot)
 
 function capa_clusterplot = acaba(stat,grandavg1,grandavg2,Fs,alpha,topography_interval);
 load('capa_layout');
