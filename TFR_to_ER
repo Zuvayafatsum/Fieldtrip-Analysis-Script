@@ -1,0 +1,42 @@
+% This is an example script for returning "chan_freq_time" TFR data (as obtained from ft_freqanalysis) to "chan_time" time-domain data (resembling ERP data)
+% This script is prepared for an experiment where there is a within-subjects Independent Variable which has 2 levels. 
+% The comparison for specific frequency range can be determined by manually.
+
+%set proper mat files for conditions.
+%condition_1 = 
+%condition_2 = 
+%freq_of_interest = [freq21 freq2]
+%condition_1_raw = raw TFR data for condition1
+%condition_2_raw = raw TFR data for condition2
+
+%selecting and averaging over freq of interest
+for i =  1:number_of_subjects
+cfg = [];
+cfg.frequency = [freq_of_interest(1,1) freq_of_interest(1,2)]; 
+cfg.avgoverfreq = 'yes' ; 
+condition_1{1,i} = ft_selectdata(cfg,condition_1_raw{1,i});
+condition_2{1,i} = ft_selectdata(cfg,condition_2_raw{1,i});
+end
+
+%Tricking fieldtrip for dimension number and order
+for i = 1:number_of_subjects
+condition_1{1,i}.dimord = 'chan_time';
+condition_1{1,i}.avg = squeeze(condition_1{1, i}.powspctrm);  
+condition_1{1,i} = rmfield(condition_1{1,i},'powspctrm');
+condition_1{1,i} = rmfield(condition_1{1,i},'freq');
+end
+
+for i = 1:number_of_subjects;
+condition_2{1,i}.dimord = 'chan_time';
+condition_2{1,i}.avg = squeeze(condition_2{1, i}.powspctrm);  
+condition_2{1,i} = rmfield(condition_2{1,i},'powspctrm');
+condition_2{1,i} = rmfield(condition_2{1,i},'freq');
+end
+
+%Grandaveraging of data
+cfg = []; 
+condition_1_gavg = ft_timelockgrandaverage(cfg,condition_1{:});
+condition_2_gavg = ft_timelockgrandaverage(cfg,condition_2{:});
+
+
+%% Now you can approach the obtained data with the same Fiedltrip functions that you use for time-domain signals %%
